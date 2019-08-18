@@ -5,19 +5,19 @@ export const Reducer = (state = {}, action) => {
     case PLAYLISTS_LOAD.START:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case PLAYLISTS_LOAD.SUCCESS:
       return {
         ...state,
         isLoading: false,
-        data: action.payload
+        data: action.payload,
       };
     case PLAYLISTS_LOAD.ERROR:
       return {
         ...state,
         isLoading: false,
-        error: action.payload
+        error: action.payload,
       };
     default:
       return state;

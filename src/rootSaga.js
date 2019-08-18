@@ -2,6 +2,6 @@ import { all } from "redux-saga/effects";
 
 import { playlistsLoadSagas } from "./playlists/logic/sagas";
 
-export default function*() {
+export default function* () {
   yield all([playlistsLoadSagas()]);
 }
