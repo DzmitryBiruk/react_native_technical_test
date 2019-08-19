@@ -4,10 +4,10 @@ import { bindActionCreators } from "redux";
 import { get } from "lodash";
 
 import { playlistsLoadStart as playlistsLoadStartAction } from "../logic/actions";
-import Loading from "../../shared/loading";
-import Error from "../../shared/error";
+import Loading from "../../shared/Loading";
+import Error from "../../shared/Error";
 import Header from "../components/Header";
-import PlaylistsList from "../components/playlistsList";
+import PlaylistsList from "../components/PlaylistsList";
 
 const Playlists = ({
   playlistsLoadStart, isLoading, loadingError, response,

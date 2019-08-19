@@ -14,6 +14,6 @@ const styles = StyleSheet.create({
 
 
 const Header = ({ title }) =>
-  <Text style={styles.text}>{`${title}`}</Text>;
+  <Text style={styles.text}>{title}</Text>;
 
 export default Header;
