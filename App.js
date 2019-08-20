@@ -19,13 +19,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const App = () =>
-  (
-    <Provider store={store}>
-      <View style={styles.container}>
-        <AppNavigator />
-      </View>
-    </Provider>
-  );
+const App = () => (
+  <Provider store={store}>
+    <View style={styles.container}>
+      <AppNavigator />
+    </View>
+  </Provider>
+);
 
 export default App;

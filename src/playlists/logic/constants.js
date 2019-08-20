@@ -1,5 +1,3 @@
-export const PLAYLISTS_API = "/featured-playlists";
-
 export const PLAYLISTS_LOAD = {
   START: "PLAYLIST_LOAD_START",
   SUCCESS: "PLAYLIST_LOAD_SUCCESS",

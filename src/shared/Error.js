@@ -1,6 +1,9 @@
 import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 
+import { ERROR_LOADING_DATA } from "../constants/appText";
+import { COLORS } from "../constants/colors";
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -14,17 +17,14 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "bold",
-    color: "#fff",
+    color: COLORS.WHITE,
   },
 });
 
-
-const Error = () =>
-  (
-    <View style={[styles.container, styles.horizontal]}>
-      <Text style={styles.text}>Error Loading Data</Text>
-    </View>
-  );
-
+const Error = () => (
+  <View style={[styles.container, styles.horizontal]}>
+    <Text style={styles.text}>{ERROR_LOADING_DATA}</Text>
+  </View>
+);
 
 export default Error;

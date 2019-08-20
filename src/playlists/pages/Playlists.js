@@ -9,16 +9,19 @@ import Error from "../../shared/Error";
 import Header from "../components/Header";
 import PlaylistsList from "../components/PlaylistsList";
 
-const Playlists = ({
-  playlistsLoadStart, isLoading, loadingError, response,
-}) => {
+const Playlists = (props) => {
+  const {
+    playlistsLoadStart, isLoading, loadingError, response, navigation,
+  } = props;
+
   useEffect(() => {
     playlistsLoadStart();
   }, []);
 
   if (isLoading) {
     return <Loading />;
-  } if (loadingError) {
+  }
+  if (loadingError) {
     return <Error />;
   }
 
@@ -27,22 +30,20 @@ const Playlists = ({
   return (
     <Fragment>
       <Header title={message} />
-      <PlaylistsList playlists={playlists.items} />
+      <PlaylistsList navigation={navigation} playlists={playlists.items} />
     </Fragment>
   );
 };
 
-const mapStateToProps = (state) =>
-  ({
-    isLoading: get(state, "playlists.isLoading", true),
-    loadingError: get(state, "playlists.error"),
-    response: get(state, "playlists.data"),
-  });
+const mapStateToProps = (state) => ({
+  isLoading: get(state, "playlists.isLoading", true),
+  loadingError: get(state, "playlists.error"),
+  response: get(state, "playlists.data"),
+});
 
-const mapDispatchToProps = (dispatch) =>
-  ({
-    playlistsLoadStart: bindActionCreators(playlistsLoadStartAction, dispatch),
-  });
+const mapDispatchToProps = (dispatch) => ({
+  playlistsLoadStart: bindActionCreators(playlistsLoadStartAction, dispatch),
+});
 
 export default connect(
   mapStateToProps,

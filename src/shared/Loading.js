@@ -13,12 +13,10 @@ const styles = StyleSheet.create({
   },
 });
 
-
-const Loading = () =>
-  (
-    <View style={[styles.container, styles.horizontal]}>
-      <ActivityIndicator size="large" color="#0000ff" />
-    </View>
-  );
+const Loading = () => (
+  <View style={[styles.container, styles.horizontal]}>
+    <ActivityIndicator size="large" color="#0000ff" />
+  </View>
+);
 
 export default Loading;
