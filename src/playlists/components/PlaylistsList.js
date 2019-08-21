@@ -15,28 +15,29 @@ const styles = StyleSheet.create({
 });
 
 const PlaylistsList = ({ playlists = [], navigation }) => {
-  const folderImagesArray = playlists.map((playlisObj) => ({
-    url: get(playlisObj, "images[0].url"),
-  }));
+  const renderListItem = ({ item }) => {
+    const { name, id } = item;
+    const imageUrl = get(item, "images[0].url");
 
-  const renderListItem = ({ item }) => (
-    <TouchableHighlight onPress={() => {
-      navigation.navigate(ROUTE_PATHS.PLAYLIST_DETAILS);
-    }}
-    >
-      <Image
-        style={styles.image}
-        source={{ uri: item.url }}
-      />
-    </TouchableHighlight>
-  );
+    return (
+      <TouchableHighlight onPress={() => {
+        navigation.navigate(ROUTE_PATHS.PLAYLIST_DETAILS, { imageUrl, name, id });
+      }}
+      >
+        <Image
+          style={styles.image}
+          source={{ uri: imageUrl }}
+        />
+      </TouchableHighlight>
+    );
+  };
 
   return (
     <FlatList
       numColumns={2}
-      data={folderImagesArray}
+      data={playlists}
       renderItem={renderListItem}
-      keyExtractor={(item) => item.url}
+      keyExtractor={(item) => item.id}
     />
   );
 };
