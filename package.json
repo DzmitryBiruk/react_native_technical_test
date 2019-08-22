@@ -19,6 +19,7 @@
     "expo-constants": "^5.0.0",
     "expo-font": "^5.0.0",
     "expo-web-browser": "^5.0.0",
+    "lodash": "^4.17.15",
     "react": "16.8.3",
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
@@ -41,7 +42,6 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-native": "^3.7.0",
     "jest-expo": "^33.0.0",
-    "lodash": "^4.17.15",
     "prettier": "^1.18.2"
   },
   "private": true

@@ -1,6 +1,4 @@
-import { API_ROOT } from "../constants/api";
-
-export const http = (path) => fetch(`${API_ROOT}${path}`).then((response) => {
+export const http = (path) => fetch(path).then((response) => {
   if (response.ok) {
     return response.json();
   }

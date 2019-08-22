@@ -1,31 +1,50 @@
-import React, { Fragment } from "react";
-import { Text, StyleSheet } from "react-native";
+import React, { Fragment, useEffect } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { get } from "lodash";
 
-import { COLORS } from "../../constants/colors";
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    marginLeft: 20,
-    marginTop: 60,
-    marginBottom: 10,
-    color: COLORS.WHITE,
-    fontWeight: "bold",
-  },
-});
+import Error from "../../shared/Error";
+import Loading from "../../shared/Loading";
+import PlaylistDescription from "../components/PlaylistDescription";
+import { playlistDetailsLoadStart as playlistDetailsLoadStartAction } from "../logic/actions";
 
 const Playlists = (props) => {
-  const { navigation } = props;
+  const {
+    navigation, loadingError, isLoading, playlistDetails, playlistDetailsLoadStart,
+  } = props;
+
   const { imageUrl, name, id } = navigation.state.params || {};
+  const { description, followers } = playlistDetails || {};
+
+  useEffect(() => {
+    playlistDetailsLoadStart(id);
+  }, [id]);
+
+  if (loadingError) {
+    return <Error />;
+  }
 
   return (
     <Fragment>
-      <Text style={styles.text}>PlaylistDetails</Text>
-      <Text style={styles.text}>{name}</Text>
-      <Text style={styles.text}>{imageUrl}</Text>
-      <Text style={styles.text}>{id}</Text>
+      <PlaylistDescription
+        imageUrl={imageUrl}
+        name={name}
+        description={description}
+        followers={followers}
+      />
+      {isLoading && <Loading />}
     </Fragment>
   );
 };
 
-export default Playlists;
+const mapStateToProps = (state) => ({
+  playlistDetails: get(state, "playlistDetails.data"),
+  isLoading: get(state, "playlistDetails.isLoading"),
+  loadingError: get(state, "playlistDetails.error"),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  playlistDetailsLoadStart: bindActionCreators(playlistDetailsLoadStartAction, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Playlists);
