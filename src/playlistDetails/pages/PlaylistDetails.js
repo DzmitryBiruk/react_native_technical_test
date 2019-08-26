@@ -7,6 +7,7 @@ import Error from "../../shared/Error";
 import Loading from "../../shared/Loading";
 import PlaylistDescription from "../components/PlaylistDescription";
 import { playlistDetailsLoadStart as playlistDetailsLoadStartAction } from "../logic/actions";
+import { COLORS } from "../../constants/colors";
 
 const Playlists = (props) => {
   const {
@@ -32,7 +33,7 @@ const Playlists = (props) => {
         description={description}
         followers={followers}
       />
-      {isLoading && <Loading />}
+      {isLoading && <Loading color={COLORS.GREEN_PRIMARY} />}
     </Fragment>
   );
 };
