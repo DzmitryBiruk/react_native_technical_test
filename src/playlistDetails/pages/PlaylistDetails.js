@@ -6,6 +6,7 @@ import { get } from "lodash";
 import Error from "../../shared/Error";
 import Loading from "../../shared/Loading";
 import PlaylistDescription from "../components/PlaylistDescription";
+import TracksList from "../components/TracksList";
 import { playlistDetailsLoadStart as playlistDetailsLoadStartAction } from "../logic/actions";
 import { COLORS } from "../../constants/colors";
 
@@ -15,7 +16,7 @@ const Playlists = (props) => {
   } = props;
 
   const { imageUrl, name, id } = navigation.state.params || {};
-  const { description, followers } = playlistDetails || {};
+  const { description, followers, tracks } = playlistDetails || {};
 
   useEffect(() => {
     playlistDetailsLoadStart(id);
@@ -33,7 +34,11 @@ const Playlists = (props) => {
         description={description}
         followersObj={followers}
       />
-      {isLoading && <Loading color={COLORS.GREEN_PRIMARY} />}
+      {isLoading ? (
+        <Loading color={COLORS.GREEN_PRIMARY} />
+      ) : (
+        <TracksList tracks={tracks} />
+      )}
     </Fragment>
   );
 };
