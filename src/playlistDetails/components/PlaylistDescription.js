@@ -4,6 +4,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
+import { parseFollowers } from "../../shared/parseFollowers";
 import { COLORS } from "../../constants/colors";
 import { SPOTIFY_PLAYLIST } from "../../constants/appText";
 
@@ -44,7 +45,11 @@ const styles = StyleSheet.create({
 });
 
 const PlaylistDescription = (props) => {
-  const { imageUrl, name, description } = props;
+  const {
+    imageUrl, name, description, followersObj = {},
+  } = props;
+
+  const followers = parseFollowers(followersObj.total);
 
   return (
     <LinearGradient
@@ -61,7 +66,7 @@ const PlaylistDescription = (props) => {
           <Text style={styles.header}>{name}</Text>
           <Text style={styles.label}>{SPOTIFY_PLAYLIST}</Text>
           <Text style={styles.description}>{description}</Text>
-          <Text style={styles.label}>Followers: ...</Text>
+          {followers && <Text style={styles.label}>{followers}</Text>}
         </View>
       </View>
     </LinearGradient>

@@ -31,7 +31,7 @@ const Playlists = (props) => {
         imageUrl={imageUrl}
         name={name}
         description={description}
-        followers={followers}
+        followersObj={followers}
       />
       {isLoading && <Loading color={COLORS.GREEN_PRIMARY} />}
     </Fragment>
